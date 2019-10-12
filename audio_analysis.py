@@ -115,4 +115,4 @@ for i in mytext:
         print(ans)
         emotion(ans)
         sentiment(ans,neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity)
-report(neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity)        
+        report(neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity)        
