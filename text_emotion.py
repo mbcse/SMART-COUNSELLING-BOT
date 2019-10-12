@@ -9,8 +9,8 @@ def cleanTweet(tweet):
         
      return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) | (\w +:\ / \ / \S +)", " ", tweet).split())
 
-abc=open("result.csv",'r')
-data=abc.readlines()
+
+data=["I felt tired out for no good reason some of the times"]
 for i in range(len(data)):
     data[i]=data[i].replace("\n"," ").strip().lower().replace(".","")
 df={}    
