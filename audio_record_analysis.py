@@ -1,8 +1,8 @@
-# Import the required module for text  
-# to speech conversion 
+
 from gtts import gTTS 
 from playsound import playsound
 import time
+
 import pyaudio
 import wave
 import speech_recognition as sr
@@ -10,13 +10,10 @@ from text_emotion import emotion
 from text_emotion import sentiment
 import text_emotion
 
-  
-# This module is imported so that we can  
-# play the converted audio 
 import os 
   
-# The text that you want to convert to audio 
-mytext = mytext = ["about how often did you feel tired out for no good reason",
+# The questions to be asked to the user
+mytext = ["about how often did you feel tired out for no good reason",
           "about how often did you feel nervous",
           "about how often did you feel so nervous that nothing could calm you down",
           "about how often did you feel hopeless",
@@ -96,8 +93,6 @@ for i in mytext:
     str="welcome"+i+".mp3"
     myobj.save(str) 
      # Playing the converted file 
-    
-
     playsound(str)    
     # os.system("welcome.mp3")
     if(i!="Welcome to INTERVIEW BOT!"):
