@@ -8,6 +8,7 @@ import wave
 import speech_recognition as sr
 from sentiment_emotion import emotion
 from sentiment_emotion import sentiment
+from sentiment_emotion import final_report_dict
 from sentiment_emotion import report
 import sentiment_emotion
 
@@ -17,7 +18,7 @@ import sentiment_emotion
 import os 
   
 # The text that you want to convert to audio 
-mytext = mytext = ["WELCOME TO SMART COUNSELLING SERVICE PORTAL ,ITS NICE TO MEET YOU","about how often did you feel tired out for no good reason",
+mytext = mytext = ["Welcome to INTERVIEW BOT!","about how often did you feel worthless",
           "about how often did you feel nervous",
           "about how often did you feel so nervous that nothing could calm you down",
           "about how often did you feel hopeless",
@@ -25,7 +26,7 @@ mytext = mytext = ["WELCOME TO SMART COUNSELLING SERVICE PORTAL ,ITS NICE TO MEE
           "about how often did you feel so restless you could not sit stil",
           "about how often did you feel depressed","about how often did you feel that everything was an effort",
           "about how often did you feel so sad that nothing could cheer you up",
-          "about how often did you feel worthless"]
+          "about how often did you feel tired out for no good reason"]
   
 # Language in which you want to convert 
 language = 'en'
@@ -89,30 +90,28 @@ def recordaudio1(i):
 # here we have marked slow=False. Which tells  
 # the module that the converted audio should  
 # have a high speed 
-polarity = 0
-positive = 0
-wpositive = 0
-spositive = 0
-negative = 0
-wnegative = 0
-snegative = 0
-neutral = 0
-NoOfTerms=10
+count=-1
 for i in mytext:
+    count+=1
+    if(count>3):
+        break
     myobj = gTTS(text=i, lang=language, slow=False) 
      # Saving the converted audio in a mp3 file named 
      # welcome 
     str="welcome"+i+".mp3"
     myobj.save(str) 
-     # Playing the converted file 
-    
-
+    # Playing the converted file 
     playsound(str)    
     # os.system("welcome.mp3")
-    if(i!="WELCOME TO SMART COUNSELLING SERVICE PORTAL ,ITS NICE TO MEET YOU"):
+    if(i!="Welcome to INTERVIEW BOT!"):
         s=recordaudio1(i)
         ans=audiototext(s)
         print(ans)
         emotion(ans)
-        sentiment(ans,neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity)
-        report(neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity)        
+        sentiment(ans)     
+
+print("After break ")
+dic_p={}
+dic_p=final_report_dict()
+print("Generating the final report....")
+report(dic_p)
