@@ -8,6 +8,7 @@ import wave
 import speech_recognition as sr
 from sentiment_emotion import emotion
 from sentiment_emotion import sentiment
+from sentiment_emotion import report
 import sentiment_emotion
 
   
@@ -16,7 +17,7 @@ import sentiment_emotion
 import os 
   
 # The text that you want to convert to audio 
-mytext = mytext = ["about how often did you feel tired out for no good reason",
+mytext = mytext = ["WELCOME TO SMART COUNSELLING SERVICE PORTAL ,ITS NICE TO MEET YOU","about how often did you feel tired out for no good reason",
           "about how often did you feel nervous",
           "about how often did you feel so nervous that nothing could calm you down",
           "about how often did you feel hopeless",
@@ -88,7 +89,15 @@ def recordaudio1(i):
 # here we have marked slow=False. Which tells  
 # the module that the converted audio should  
 # have a high speed 
-
+polarity = 0
+positive = 0
+wpositive = 0
+spositive = 0
+negative = 0
+wnegative = 0
+snegative = 0
+neutral = 0
+NoOfTerms=10
 for i in mytext:
     myobj = gTTS(text=i, lang=language, slow=False) 
      # Saving the converted audio in a mp3 file named 
@@ -100,9 +109,10 @@ for i in mytext:
 
     playsound(str)    
     # os.system("welcome.mp3")
-    if(i!="Welcome to INTERVIEW BOT!"):
+    if(i!="WELCOME TO SMART COUNSELLING SERVICE PORTAL ,ITS NICE TO MEET YOU"):
         s=recordaudio1(i)
         ans=audiototext(s)
         print(ans)
         emotion(ans)
-        sentiment(ans)
+        sentiment(ans,neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity)
+report(neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity)        

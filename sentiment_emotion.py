@@ -35,37 +35,51 @@ def  emotion(t):
     #pyplot.show()          
 
 
-def sentiment(t):
-        polarity = 0
-        positive = 0
-        wpositive = 0
-        spositive = 0
-        negative = 0
-        wnegative = 0
-        snegative = 0
-        neutral = 0
-
+def sentiment(t,neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity):
+        
+        
         analysis = TextBlob(t)
             
         polarity = analysis.sentiment.polarity 
 
-        if (analysis.sentiment.polarity == 0):  
-                neutral = 1
-        elif (analysis.sentiment.polarity > 0 and analysis.sentiment.polarity <= 0.3):
-                wpositive = 1
-        elif (analysis.sentiment.polarity > 0.3 and analysis.sentiment.polarity <= 0.6):
-                positive = 1
-        elif (analysis.sentiment.polarity > 0.6 and analysis.sentiment.polarity <= 1):
-                spositive = 1
-        elif (analysis.sentiment.polarity > -0.3 and analysis.sentiment.polarity <= 0):
-                wnegative = 1
-        elif (analysis.sentiment.polarity > -0.6 and analysis.sentiment.polarity <= -0.3):
-                negative = 1
-        elif (analysis.sentiment.polarity > -1 and analysis.sentiment.polarity <= -0.6):
-                snegative = 1
+        polarity += analysis.sentiment.polarity
 
+        if (analysis.sentiment.polarity == 0):  
+                neutral+= 1
+        elif (analysis.sentiment.polarity > 0 and analysis.sentiment.polarity <= 0.3):
+                wpositive+= 1
+        elif (analysis.sentiment.polarity > 0.3 and analysis.sentiment.polarity <= 0.6):
+                positive+= 1
+        elif (analysis.sentiment.polarity > 0.6 and analysis.sentiment.polarity <= 1):
+                spositive+= 1
+        elif (analysis.sentiment.polarity > -0.3 and analysis.sentiment.polarity <= 0):
+                wnegative+= 1
+        elif (analysis.sentiment.polarity > -0.6 and analysis.sentiment.polarity <= -0.3):
+                negative+= 1
+        elif (analysis.sentiment.polarity > -1 and analysis.sentiment.polarity <= -0.6):
+                snegative+= 1
+
+
+def percentage( part, whole):
+        temp = 100 * float(part) / float(whole)
+        return format(temp, '.2f')        
+
+ 
+
+def report(neutral,wpositive,positive,spositive,wnegative,negative,snegative,NoOfTerms,polarity):
 
         
+        positive =percentage(positive, NoOfTerms)
+        wpositive =percentage(wpositive, NoOfTerms)
+        spositive =percentage(spositive, NoOfTerms)
+        negative = percentage(negative, NoOfTerms)
+        wnegative = percentage(wnegative, NoOfTerms)
+        snegative = percentage(snegative, NoOfTerms)
+        neutral = percentage(neutral, NoOfTerms)
+
+       
+        polarity = polarity / NoOfTerms    
+
         print()
         print("General Report: ")
 
@@ -94,6 +108,7 @@ def sentiment(t):
         print(str(wnegative) + "% people thought it was weakly negative")
         print(str(snegative) + "% people thought it was strongly negative")
         print(str(neutral) + "% people thought it was neutral")
+     
   
 
 
