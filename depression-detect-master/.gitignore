@@ -1,0 +1,14 @@
+*.pyc
+.idea
+.ipynb_checkpoints
+*.bak
+*.swp
+*.npz
+.DS_Store
+.wav
+
+# Folders
+/data/
+/references/
+/src/features/non_essential
+/notebooks
