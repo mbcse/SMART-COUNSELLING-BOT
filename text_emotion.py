@@ -12,11 +12,24 @@ def  emotion(t):
     data=data.replace("\n"," ").strip().lower().replace(".","")
     def clean(text):
         
+<<<<<<< HEAD
          return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) | (\w +:\ / \ / \S +)", " ", text).split())
 
 
     
     
+=======
+     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) | (\w +:\ / \ / \S +)", " ", tweet).split())
+
+
+data=["I felt tired out for no good reason some of the times"]
+for i in range(len(data)):
+    data[i]=data[i].replace("\n"," ").strip().lower().replace(".","")
+df={}    
+for i in range(len(data)):
+    data[i]=cleanTweet(data[i])
+    d=emo.analyze(data[i],)
+>>>>>>> 591268ad9d205358c2f6e26f2825eb285d0595ec
     
        
     
