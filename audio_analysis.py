@@ -6,9 +6,9 @@ import time
 import pyaudio
 import wave
 import speech_recognition as sr
-from text_emotion import emotion
-from text_emotion import sentiment
-import text_emotion
+from sentiment_emotion import emotion
+from sentiment_emotion import sentiment
+import sentiment_emotion
 
   
 # This module is imported so that we can  
